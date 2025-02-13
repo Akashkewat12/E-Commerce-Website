@@ -18,6 +18,7 @@ public class AppConfig {
                 SessionCreationPolicy.STATELESS
         )).authorizeRequests(authorize ->authorize
                 .requestMatchers("/api/**").authenticated()
+                system
         )
     }
 }
