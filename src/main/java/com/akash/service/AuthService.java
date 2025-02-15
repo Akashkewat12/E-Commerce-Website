@@ -1,5 +1,8 @@
 package com.akash.service;
 
-public class AuthService {
+import com.akash.response.SignupRequest;
 
+public interface AuthService {
+
+    String createUser(SignupRequest req) throws Exception;
 }
