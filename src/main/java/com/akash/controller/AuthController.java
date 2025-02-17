@@ -3,7 +3,10 @@ package com.akash.controller;
 
 import com.akash.domain.USER_ROLE;
 import com.akash.modal.User;
+import com.akash.modal.VerificationCode;
 import com.akash.repository.UserRepository;
+import com.akash.request.LoginRequest;
+import com.akash.response.ApiResponse;
 import com.akash.response.AuthResponse;
 import com.akash.response.SignupRequest;
 import com.akash.service.AuthService;
@@ -35,4 +38,31 @@ public class AuthController {
 
         return ResponseEntity.ok(res);
     }
+
+    @PostMapping("/sent/login-signup-otp")
+    public ResponseEntity<ApiResponse> sentOtpHandler(
+            @RequestBody VerificationCode req) throws Exception {
+
+
+        authService.sentLoginOtp(req.getEmail());
+        ApiResponse res=new ApiResponse();
+
+        res.setMessage("otp sent successfully");
+
+        return ResponseEntity.ok(res);
+    }
+
+    // Login handler
+
+    @PostMapping("/signing")
+    public ResponseEntity<AuthResponse> loginHandler(
+            @RequestBody LoginRequest req) throws Exception {
+
+
+       AuthResponse authResponse=authService.signing(req);
+
+        return ResponseEntity.ok(authResponse);
+    }
+
+
 }
