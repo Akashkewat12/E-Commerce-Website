@@ -54,6 +54,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         VerificationCode isExist=verificationCodeRepository.findByEmail(email);
+
         if(isExist != null) {
             verificationCodeRepository.delete(isExist);
         }
@@ -62,7 +63,7 @@ public class AuthServiceImpl implements AuthService {
 
         VerificationCode verificationCode=new VerificationCode();
         verificationCode.setOtp(otp);
-        verificationCode.setOtp(email);
+        verificationCode.setEmail(email);
         verificationCodeRepository.save(verificationCode);
 
         String subject="zosh bazaar login/signup otp";
@@ -149,6 +150,7 @@ public class AuthServiceImpl implements AuthService {
         return new UsernamePasswordAuthenticationToken(
                 userDetails,
                 null,
-                userDetails.getAuthorities());
+                userDetails.getAuthorities()
+        );
     }
 }
