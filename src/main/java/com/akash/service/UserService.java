@@ -1,6 +1,7 @@
-package com.akash.service.impl;
+package com.akash.service;
 
 import com.akash.modal.User;
+import org.springframework.stereotype.Service;
 
 public interface UserService {
 

@@ -3,18 +3,20 @@ package com.akash.service.impl;
 import com.akash.config.JwtProvider;
 import com.akash.modal.User;
 import com.akash.repository.UserRepository;
+import com.akash.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+@Service
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final JwtProvider jwtProvider;
 
     @Override
     public User findUserByJwtToken(String jwt) throws Exception {
+        //jwt=jwt.trim();
 
         String email=jwtProvider.getEmailFromJwtToken(jwt);
 
